@@ -1,4 +1,4 @@
-# flutterchiptags
+# flutter_chip_tags
 
 Clip Style Tags
 

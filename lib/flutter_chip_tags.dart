@@ -1,4 +1,4 @@
-library flutterchiptags;
+library flutter_chip_tags;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +8,9 @@ class FlutterChipTags extends StatefulWidget {
   final Color textColor;
   final InputDecoration decoration;
   final TextInputType keyboardType;
-  final GlobalKey<FormState> formKey;
+  final GlobalKey<FormState> key;
   final List<String> list;
-  const FlutterChipTags({@required Key key, this.iconColor, this.chipColor, this.textColor,this.decoration, this.keyboardType , @required this.list, @required this.formKey}) : super (key: key);
+  const FlutterChipTags({@required this.key, this.iconColor, this.chipColor, this.textColor,this.decoration, this.keyboardType , @required this.list});
   @override
   _FlutterChipTagsState createState() => _FlutterChipTagsState();
 }
@@ -29,7 +29,7 @@ class _FlutterChipTagsState extends State<FlutterChipTags> with SingleTickerProv
             onChanged: (value){
               if(value.endsWith(" ")){
                 widget.list.add(value);
-                widget.formKey.currentState.reset();
+                widget.key.currentState.reset();
                 setState(() {});
               }
             },
