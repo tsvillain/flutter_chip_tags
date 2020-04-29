@@ -1,14 +1,30 @@
 # flutter_chip_tags
 
-Clip Style Tags
+Clip Styled Tags with TextFormField
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+### Example
+```dart
+ChipTags(
+  list: _myListCustom,
+  chipColor: Colors.black,
+  iconColor: Colors.white,
+  textColor: Colors.white,
+  decoration: InputDecoration(hintText: "Your Custom Hint"),
+  keyboardType: TextInputType.text,
+),
+```    
+## Properties
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+| Property        | Function                                                  |
+| --------------- | --------------------------------------------------------  |
+| list            | List<String> which you want to display as Tags.           |
+| chipColor       | Sets Chip background color. By default it's Blue.         | 
+| iconColor       | Sets Icon color. By default it's White.                   |
+| textColor       | Sets Text color. By default it's White.                   |
+| decoration      | It accepts InputDecoration to decorate TextFormField.     | 
+| keyboradType    | It accepts TextInputType to set the keyboard layout.      |
+  
+## Example Demo
+<img src="exampleDemo.GIF" height=500>
