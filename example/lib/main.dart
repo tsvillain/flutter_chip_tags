@@ -4,7 +4,6 @@ import 'package:flutter_chip_tags/flutter_chip_tags.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,27 +24,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _formKey = GlobalKey<FormState>();
   //initialize an empty list
   List<String> _myList = List<String>();
+  List<String> _myListCustom = List<String>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: FlutterChipTags(
-        key: _formKey,
-        list: _myList,
-        keyboardType: TextInputType.text,
-        chipColor: Colors.blue,
-        iconColor: Colors.red,
-        textColor: Colors.white,
-        decoration: InputDecoration(
-          hintText: "Hello",
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            //Default
+            ChipTags(
+              list: _myList,
+            ),
+            //Customised
+            ChipTags(
+              list: _myListCustom,
+              chipColor: Colors.black,
+              iconColor: Colors.white,
+              textColor: Colors.white,
+              decoration: InputDecoration(hintText: "Your Custom Hint"),
+              keyboardType: TextInputType.text,
+            ),
+          ],
         ),
-      )
-      // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

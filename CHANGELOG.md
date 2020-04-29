@@ -1,3 +1,3 @@
-[0.0.1] - 2020-04-30.
+## [0.0.1] - 2020-04-30.
 
-* TODO: Describe initial release.
+* Initial release.
