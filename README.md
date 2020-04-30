@@ -1,10 +1,11 @@
 # flutter_chip_tags
 
-Clip Styled Tags with TextFormField
+flutter_chip_tags allow developers to create tags from list and add or remove tags from list. It has a TextFormField where user can insert value and it will seprate each tag by space. Similar to GitHub Manage Topics
 
 ## Getting Started
 
-### Example
+## For Detailed Example head over to [example/lib/main.dart](example/lib/main.dart)
+## Sample
 ```dart
 ChipTags(
   list: _myListCustom,
@@ -27,4 +28,4 @@ ChipTags(
 | keyboradType    | It accepts TextInputType to set the keyboard layout.      |
   
 ## Example Demo
-<img src="exampleDemo.GIF" height=500>
+![](exampleDemo.GIF)
