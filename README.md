@@ -20,7 +20,7 @@ ChipTags(
 
 | Property        | Function                                                  |
 | --------------- | --------------------------------------------------------  |
-| list            | List<String> which you want to display as Tags.           |
+| list            | ```List<String>``` which you want to display as Tags.     |
 | chipColor       | Sets Chip background color. By default it's Blue.         | 
 | iconColor       | Sets Icon color. By default it's White.                   |
 | textColor       | Sets Text color. By default it's White.                   |
