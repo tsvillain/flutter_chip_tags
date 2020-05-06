@@ -1,6 +1,6 @@
 name: flutter_chip_tags
 description: Clip Style Tags with TextFormField. Useful for adding Tags from TextFormField.
-version: 1.0.0+1
+version: 1.0.1
 homepage: https://github.com/tsvillain/flutter_chip_tags.git
 
 environment:

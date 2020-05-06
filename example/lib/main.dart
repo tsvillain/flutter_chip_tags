@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ChipTags(
               list: _myList,
             ),
+            Divider(),
             //Customised
             ChipTags(
               list: _myListCustom,

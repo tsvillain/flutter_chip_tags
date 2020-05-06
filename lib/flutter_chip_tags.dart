@@ -51,29 +51,33 @@ class _ChipTagsState extends State<ChipTags>
             },
           ),
         ),
-        Container(
-          height: 50,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.list.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FilterChip(
-                    backgroundColor: widget.chipColor ?? Colors.blue,
-                    label: Text(
-                      widget.list[index],
-                      style: TextStyle(color: widget.textColor ?? Colors.white),
+        Visibility(
+          visible: widget.list.length > 0,
+          child: Container(
+            height: 50,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.list.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FilterChip(
+                      backgroundColor: widget.chipColor ?? Colors.blue,
+                      label: Text(
+                        widget.list[index],
+                        style:
+                            TextStyle(color: widget.textColor ?? Colors.white),
+                      ),
+                      avatar: Icon(Icons.remove_circle_outline,
+                          color: widget.iconColor ?? Colors.white),
+                      onSelected: (value) {
+                        widget.list.removeAt(index);
+                        setState(() {});
+                      },
                     ),
-                    avatar: Icon(Icons.remove_circle_outline,
-                        color: widget.iconColor ?? Colors.white),
-                    onSelected: (value) {
-                      widget.list.removeAt(index);
-                      setState(() {});
-                    },
-                  ),
-                );
-              }),
+                  );
+                }),
+          ),
         ),
       ],
     );
