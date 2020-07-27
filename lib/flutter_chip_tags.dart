@@ -4,11 +4,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ChipTags extends StatefulWidget {
+  ///sets the remove icon Color
   final Color iconColor;
+
+  ///sets the chip background color
   final Color chipColor;
+
+  ///sets the color of text inside chip
   final Color textColor;
+
+  ///container decoration
   final InputDecoration decoration;
+
+  ///set keyboradType
   final TextInputType keyboardType;
+
+  /// list of String to display
   final List<String> list;
   const ChipTags(
       {Key key,
@@ -25,7 +36,9 @@ class ChipTags extends StatefulWidget {
 
 class _ChipTagsState extends State<ChipTags>
     with SingleTickerProviderStateMixin {
+  ///Form key for TextField
   final _formKey = GlobalKey<FormState>();
+  TextEditingController _inputController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +46,8 @@ class _ChipTagsState extends State<ChipTags>
       children: <Widget>[
         Form(
           key: _formKey,
-          child: TextFormField(
+          child: TextField(
+            controller: _inputController,
             decoration: widget.decoration ??
                 InputDecoration(
                   border: OutlineInputBorder(
@@ -43,40 +57,45 @@ class _ChipTagsState extends State<ChipTags>
                 ),
             keyboardType: widget.keyboardType ?? TextInputType.text,
             onChanged: (value) {
+              ///check if user has send " " so that it can break the line
+              ///and add that word to list
               if (value.endsWith(" ")) {
-                widget.list.add(value);
+                widget.list.add(value.trim());
+
+                ///setting the controller to empty
+                _inputController.clear();
+
+                ///resetting form
                 _formKey.currentState.reset();
+
+                ///refersing the state to show new data
                 setState(() {});
               }
             },
           ),
         ),
         Visibility(
+          //if length is 0 it will not occupie any space
           visible: widget.list.length > 0,
-          child: Container(
-            height: 50,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: widget.list.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FilterChip(
+          child: Wrap(
+            ///creating a list
+            children: widget.list.map((text) {
+              return Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: FilterChip(
                       backgroundColor: widget.chipColor ?? Colors.blue,
                       label: Text(
-                        widget.list[index],
+                        text,
                         style:
                             TextStyle(color: widget.textColor ?? Colors.white),
                       ),
                       avatar: Icon(Icons.remove_circle_outline,
                           color: widget.iconColor ?? Colors.white),
                       onSelected: (value) {
-                        widget.list.removeAt(index);
+                        widget.list.remove(text);
                         setState(() {});
-                      },
-                    ),
-                  );
-                }),
+                      }));
+            }).toList(),
           ),
         ),
       ],
