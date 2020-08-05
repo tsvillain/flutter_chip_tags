@@ -60,8 +60,10 @@ class _ChipTagsState extends State<ChipTags>
               ///check if user has send " " so that it can break the line
               ///and add that word to list
               if (value.endsWith(" ")) {
-                widget.list.add(value.trim());
-
+                // check for adding ' ' (space) as a tag
+                 if (value != ' ') {
+                  widget.list.add(value.trim());
+                }
                 ///setting the controller to empty
                 _inputController.clear();
 
