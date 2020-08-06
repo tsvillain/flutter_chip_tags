@@ -60,6 +60,7 @@ class _ChipTagsState extends State<ChipTags>
               ///check if user has send " " so that it can break the line
               ///and add that word to list
               if (value.endsWith(" ")) {
+                ///check for ' ' and duplicate tags
                  if (value != ' ' && !widget.list.contains(value.trim())) {
                   widget.list.add(value.trim());
                 }

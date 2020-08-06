@@ -1,3 +1,7 @@
+## [1.0.3] - 2020-08-06
+
+* Added Empty and Duplicate Tags Check
+
 ## [1.0.2] - 2020-07-27
 
 * Updated UI
