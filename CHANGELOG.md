@@ -1,3 +1,7 @@
+## [1.0.4] - 2020-10-01
+
+* Now you can use any symbol or charater as separator.
+
 ## [1.0.3] - 2020-08-06
 
 * Added Empty and Duplicate Tags Check
