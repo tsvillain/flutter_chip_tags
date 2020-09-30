@@ -19,17 +19,22 @@ class ChipTags extends StatefulWidget {
   ///set keyboradType
   final TextInputType keyboardType;
 
+  ///customer symbol to seprate tags by default
+  ///it is " " space.
+  final String separator;
+
   /// list of String to display
   final List<String> list;
-  const ChipTags(
-      {Key key,
-      this.iconColor,
-      this.chipColor,
-      this.textColor,
-      this.decoration,
-      this.keyboardType,
-      @required this.list})
-      : super(key: key);
+  const ChipTags({
+    Key key,
+    this.iconColor,
+    this.chipColor,
+    this.textColor,
+    this.decoration,
+    this.keyboardType,
+    this.separator,
+    @required this.list,
+  }) : super(key: key);
   @override
   _ChipTagsState createState() => _ChipTagsState();
 }
@@ -53,16 +58,18 @@ class _ChipTagsState extends State<ChipTags>
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText: "Separate Tags with Space",
+                  hintText:
+                      "Separate Tags with '${widget.separator ?? 'space'}'",
                 ),
             keyboardType: widget.keyboardType ?? TextInputType.text,
             onChanged: (value) {
               ///check if user has send " " so that it can break the line
               ///and add that word to list
-              if (value.endsWith(" ")) {
+              if (value.endsWith(widget.separator ?? " ")) {
                 ///check for ' ' and duplicate tags
-                 if (value != ' ' && !widget.list.contains(value.trim())) {
-                  widget.list.add(value.trim());
+                if (value != ' ' && !widget.list.contains(value.trim())) {
+                  widget.list
+                      .add(value.replaceFirst(widget.separator, '').trim());
                 }
 
                 ///setting the controller to empty
