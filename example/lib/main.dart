@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
               chipColor: Colors.black,
               iconColor: Colors.white,
               textColor: Colors.white,
+              separator: ":",
               decoration: InputDecoration(hintText: "Your Custom Hint"),
               keyboardType: TextInputType.text,
             ),
