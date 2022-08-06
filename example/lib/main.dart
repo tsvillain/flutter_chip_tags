@@ -17,39 +17,40 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   //initialize an empty list
-  List<String> _myList = List<String>();
-  List<String> _myListCustom = List<String>();
+  List<String> _myList = [];
+  List<String> _myListCustom = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            //Default
+            //Default use space to seprate
             ChipTags(
               list: _myList,
             ),
             Divider(),
-            //Customised
+            //Customised add any character using which you want to seprate
             ChipTags(
               list: _myListCustom,
               chipColor: Colors.black,
               iconColor: Colors.white,
               textColor: Colors.white,
-              separator: ":",
+              separator: "a",
+              createTagOnSubmit: false,
               decoration: InputDecoration(hintText: "Your Custom Hint"),
               keyboardType: TextInputType.text,
             ),
