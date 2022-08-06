@@ -21,16 +21,16 @@ ChipTags(
 
 ## Properties
 
-| Property          | Function                                              |
-| ----------------- | ----------------------------------------------------- |
-| list              | `List<String>` which you want to display as Tags.     |
-| chipColor         | Sets Chip background color. By default it's Blue.     |
-| iconColor         | Sets Icon color. By default it's White.               |
-| textColor         | Sets Text color. By default it's White.               |
-| separator         | String that acts as the target to separate.           |
-| decoration        | It accepts InputDecoration to decorate TextFormField. |
-| keyboradType      | It accepts TextInputType to set the keyboard layout.  |
-| createTagOnSubmit | It allows user to create tag without using seprator   |
+| Property          | Function                                                                         |
+| ----------------- | -------------------------------------------------------------------------------- |
+| list              | `List<String>` which you want to display as Tags.                                |
+| chipColor         | Sets Chip background color. By default it's Blue.                                |
+| iconColor         | Sets Icon color. By default it's White.                                          |
+| textColor         | Sets Text color. By default it's White.                                          |
+| separator         | String that acts as the target to separate.                                      |
+| decoration        | It accepts InputDecoration to decorate TextFormField.                            |
+| keyboradType      | It accepts TextInputType to set the keyboard layout.                             |
+| createTagOnSubmit | It allows user to create tag on submit. If `true` they separtor will be ignored. |
 
 ## Example Demo
 

@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //Default use space to seprate
             ChipTags(
               list: _myList,
+              createTagOnSubmit: true,
             ),
             Divider(),
             //Customised add any character using which you want to seprate

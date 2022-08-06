@@ -11,7 +11,7 @@ class ChipTags extends StatefulWidget {
     this.decoration,
     this.keyboardType,
     this.separator,
-    this.createTagOnSubmit = true,
+    this.createTagOnSubmit = false,
     required this.list,
   }) : super(key: key);
 
@@ -37,8 +37,9 @@ class ChipTags extends StatefulWidget {
   /// list of String to display
   final List<String> list;
 
-  /// Default `createTagOnSumit = true`
+  /// Default `createTagOnSumit = false`
   /// Creates new tag if user submit.
+  /// If true they separtor will be ignored.
   final bool createTagOnSubmit;
 
   @override
@@ -66,8 +67,9 @@ class _ChipTagsState extends State<ChipTags>
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText:
-                      "Separate Tags with '${widget.separator ?? 'space'}'",
+                  hintText: widget.createTagOnSubmit
+                      ? "Submit text to create Tags"
+                      : "Separate Tags with '${widget.separator ?? 'space'}'",
                 ),
             keyboardType: widget.keyboardType ?? TextInputType.text,
             textInputAction: TextInputAction.done,
@@ -87,27 +89,30 @@ class _ChipTagsState extends State<ChipTags>
                     _focusNode.requestFocus();
                   }
                 : null,
-            onChanged: (value) {
-              ///check if user has send separator so that it can break the line
-              ///and add that word to list
-              if (value.endsWith(widget.separator ?? " ")) {
-                ///check for ' ' and duplicate tags
-                if (value != widget.separator &&
-                    !widget.list.contains(value.trim())) {
-                  widget.list.add(
-                      value.replaceFirst(widget.separator ?? " ", '').trim());
-                }
+            onChanged: widget.createTagOnSubmit
+                ? null
+                : (value) {
+                    ///check if user has send separator so that it can break the line
+                    ///and add that word to list
+                    if (value.endsWith(widget.separator ?? " ")) {
+                      ///check for ' ' and duplicate tags
+                      if (value != widget.separator &&
+                          !widget.list.contains(value.trim())) {
+                        widget.list.add(value
+                            .replaceFirst(widget.separator ?? " ", '')
+                            .trim());
+                      }
 
-                ///setting the controller to empty
-                _inputController.clear();
+                      ///setting the controller to empty
+                      _inputController.clear();
 
-                ///resetting form
-                _formKey.currentState!.reset();
+                      ///resetting form
+                      _formKey.currentState!.reset();
 
-                ///refersing the state to show new data
-                setState(() {});
-              }
-            },
+                      ///refersing the state to show new data
+                      setState(() {});
+                    }
+                  },
           ),
         ),
         Visibility(
