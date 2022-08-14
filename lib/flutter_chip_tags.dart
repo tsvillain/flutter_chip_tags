@@ -1,6 +1,9 @@
 library flutter_chip_tags;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_chip_tags/src/core/util/enum.dart';
+
+export './src/core/util/enum.dart';
 
 class ChipTags extends StatefulWidget {
   const ChipTags({
@@ -12,6 +15,7 @@ class ChipTags extends StatefulWidget {
     this.keyboardType,
     this.separator,
     this.createTagOnSubmit = false,
+    this.chipPosition = ChipPosition.below,
     required this.list,
   }) : super(key: key);
 
@@ -37,6 +41,8 @@ class ChipTags extends StatefulWidget {
   /// list of String to display
   final List<String> list;
 
+  final ChipPosition chipPosition;
+
   /// Default `createTagOnSumit = false`
   /// Creates new tag if user submit.
   /// If true they separtor will be ignored.
@@ -58,6 +64,9 @@ class _ChipTagsState extends State<ChipTags>
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
+        Visibility(
+            visible: widget.chipPosition == ChipPosition.above,
+            child: _chipListPreview()),
         Form(
           key: _formKey,
           child: TextField(
@@ -116,30 +125,35 @@ class _ChipTagsState extends State<ChipTags>
           ),
         ),
         Visibility(
-          //if length is 0 it will not occupie any space
-          visible: widget.list.length > 0,
-          child: Wrap(
-            ///creating a list
-            children: widget.list.map((text) {
-              return Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: FilterChip(
-                      backgroundColor: widget.chipColor ?? Colors.blue,
-                      label: Text(
-                        text,
-                        style:
-                            TextStyle(color: widget.textColor ?? Colors.white),
-                      ),
-                      avatar: Icon(Icons.remove_circle_outline,
-                          color: widget.iconColor ?? Colors.white),
-                      onSelected: (value) {
-                        widget.list.remove(text);
-                        setState(() {});
-                      }));
-            }).toList(),
-          ),
-        ),
+            visible: widget.chipPosition == ChipPosition.below,
+            child: _chipListPreview()),
       ],
+    );
+  }
+
+  Visibility _chipListPreview() {
+    return Visibility(
+      //if length is 0 it will not occupie any space
+      visible: widget.list.length > 0,
+      child: Wrap(
+        ///creating a list
+        children: widget.list.map((text) {
+          return Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: FilterChip(
+                  backgroundColor: widget.chipColor ?? Colors.blue,
+                  label: Text(
+                    text,
+                    style: TextStyle(color: widget.textColor ?? Colors.white),
+                  ),
+                  avatar: Icon(Icons.remove_circle_outline,
+                      color: widget.iconColor ?? Colors.white),
+                  onSelected: (value) {
+                    widget.list.remove(text);
+                    setState(() {});
+                  }));
+        }).toList(),
+      ),
     );
   }
 }
