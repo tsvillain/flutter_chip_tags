@@ -1,3 +1,7 @@
+## [2.0.2] - 2022-08-14
+
+- Added new property `chipPosition` it's accepts `ChipPosition` to determine where to place the chips.
+
 ## [2.0.1] - 2022-08-06
 
 - Fixed `createTagOnSubmit`

@@ -50,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               chipColor: Colors.black,
               iconColor: Colors.white,
               textColor: Colors.white,
+              chipPosition: ChipPosition.above,
               separator: "a",
               createTagOnSubmit: false,
               decoration: InputDecoration(hintText: "Your Custom Hint"),
