@@ -16,6 +16,7 @@ class ChipTags extends StatefulWidget {
     this.separator,
     this.createTagOnSubmit = false,
     this.chipPosition = ChipPosition.below,
+    this.inputController,
     required this.list,
   }) : super(key: key);
 
@@ -38,6 +39,9 @@ class ChipTags extends StatefulWidget {
   ///it is " " space.
   final String? separator;
 
+  //sets a custom TextEditingController
+  final TextEditingController? inputController;
+
   /// list of String to display
   final List<String> list;
 
@@ -58,7 +62,14 @@ class _ChipTagsState extends State<ChipTags>
 
   ///Form key for TextField
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _inputController = TextEditingController();
+  late TextEditingController _inputController;
+
+  @override
+  void initState() {
+    _inputController = widget.inputController ?? TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
